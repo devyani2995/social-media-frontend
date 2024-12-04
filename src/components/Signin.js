@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../config/axiosInstance';
 
 const Signin = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const Signin = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
+            const response = await axiosInstance.post('users/login', { email, password });
             console.log("response",response)
             if (response.status === 200) {
                 // Save token on localstorage

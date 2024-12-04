@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from 'axios'; // Adjust the path to your axios instance
 import { toast, ToastContainer } from 'react-toastify'; // Import Toastify
+import axiosInstance from "../config/axiosInstance";
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ function Signup() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/users/signup', { email, password });
+            const response = await axiosInstance.post('users/signup', { email, password });
 
             console.log("response", response);
             // Show success toast on successful signup

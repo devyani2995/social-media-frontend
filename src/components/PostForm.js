@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
-import axios from 'axios';
 import { PostContext } from '../context/PostContext';
+import axiosInstance from '../config/axiosInstance';
 
   
 const PostForm = () => {
@@ -29,8 +29,8 @@ const PostForm = () => {
 
     try {
       // Make the API request
-      const response = await axios.post(
-        'http://localhost:5000/api/posts', // Replace with your actual API URL
+      const response = await axiosInstance.post(
+        'posts',
         { content: postContent },
         {
           headers: {

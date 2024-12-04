@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import axiosInstance from '../config/axiosInstance';
 
 const ProtectedRoute = ({ children }) => {
     const [isValid, setIsValid] = useState(null);
@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
             }
 
             try {
-                const response = await axios.get("http://localhost:5000/api/users/validate-token", {
+                const response = await axiosInstance.get("users/validate-token", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     },

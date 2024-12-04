@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import axios from 'axios';
 import { PostContext } from '../context/PostContext';
+import axiosInstance from '../config/axiosInstance';
 
 const FeedList = () => {
   const { posts, setPosts } = useContext(PostContext);
@@ -17,13 +17,13 @@ const FeedList = () => {
 
       if (isLiked) {
         // If already liked, send DELETE request
-        await axios.delete('http://localhost:5000/api/likes', {
+        await axiosInstance.delete('likes', {
           data: { postId }, // Body for DELETE request
           ...config,
         });
       } else {
         // If not liked, send POST request
-        await axios.post('http://localhost:5000/api/likes', { postId }, config);
+        await axiosInstance.post('likes', { postId }, config);
       }
 
       // Update the post's like status and count
